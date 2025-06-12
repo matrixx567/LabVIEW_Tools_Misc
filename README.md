@@ -22,4 +22,6 @@ MNProjects.Misc.Cmd="cmd.exe /k %CMDER_ROOT%\vendor\init.bat"
 MNProjects.Misc.Code="c:\Program Files\Microsoft VS Code\code.exe"
 
 MNProjects.Misc.Sourcetree="Sourcetree.exe"
+
+MNProjects.Misc.FindNonProjectFiles.FoldersToExclude=".git;.svn"
 ```
