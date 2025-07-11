@@ -115,3 +115,5 @@ https://www.vipm.io/package/sas_workshops_lib_vipc_applier_for_g_cli/
 https://github.com/ni/actor-framework
 
 
+https://gitlab.com/sas_public/class_refactoring_tools
+https://blog.sasworkshops.com/copying-and-renaming-classes/
