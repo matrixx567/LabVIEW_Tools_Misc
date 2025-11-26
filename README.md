@@ -36,3 +36,6 @@ MNProjects.Misc.FindNonProjectFiles.FoldersToExclude=".git;.svn;build;builds"
 ```
 
 
+## Tips
+
+https://labviewwiki.org/wiki/How_to_do_Menu_Launch_VIs

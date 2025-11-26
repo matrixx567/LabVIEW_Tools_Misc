@@ -78,6 +78,7 @@
 			</Item>
 		</Item>
 		<Item Name="tools" Type="Folder">
+			<Property Name="NI.SortType" Type="Int">3</Property>
 			<Item Name="explorer" Type="Folder">
 				<Item Name="ExplorerOpen DataFolder.vi" Type="VI" URL="../tools/Explorer/ExplorerOpen DataFolder.vi"/>
 				<Item Name="ExplorerOpen LabView.vi" Type="VI" URL="../tools/Explorer/ExplorerOpen LabView.vi"/>
@@ -93,6 +94,7 @@
 			<Item Name="OpenProjectInCmd.vi" Type="VI" URL="../tools/OpenProjectInCmd.vi"/>
 			<Item Name="OpenProjectWithCode.vi" Type="VI" URL="../tools/OpenProjectWithCode.vi"/>
 			<Item Name="OpenProjectWithSourcetree.vi" Type="VI" URL="../tools/OpenProjectWithSourcetree.vi"/>
+			<Item Name="MNProjects.txt" Type="Document" URL="../tools/MNProjects.txt"/>
 		</Item>
 		<Item Name="README.md" Type="Document" URL="../README.md"/>
 		<Item Name="Tools_Misc.vipb" Type="Document" URL="../Tools_Misc.vipb"/>
