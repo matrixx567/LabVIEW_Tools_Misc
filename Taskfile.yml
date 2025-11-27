@@ -19,6 +19,6 @@ tasks:
         msg: 'No changes since last commit'
     cmds:
       - cmd: 'echo "Lastet TAG: {{.GIT_LATEST_TAG}} created on {{.GIT_LATEST_TAG_TIME}}"'
-      - cmd: 'echo "Changes: {{.GIT_CHANGES_SINCE_LAST_COMMIT}}"'
+      - cmd: 'printf "GIT changes:\n{{.GIT_CHANGES_SINCE_LAST_COMMIT}}\n"'
 
     silent: true

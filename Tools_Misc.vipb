@@ -1,4 +1,4 @@
-<VI_Package_Builder_Settings Version="2020.1" Created_Date="2019-04-18 23:43:15" Modified_Date="2025-11-26 14:57:56" Creator="Martin" Comments="" ID="c0f0e986866c0ff16d643bc241158b2b">
+<VI_Package_Builder_Settings Version="2020.1" Created_Date="2019-04-18 23:43:15" Modified_Date="2025-11-27 12:50:30" Creator="Martin" Comments="" ID="145d47c560e9d5658f95204d05b9693c">
   <Library_General_Settings>
     <Package_File_Name>MNProjects_Tools_Misc</Package_File_Name>
     <Library_Version>0.2.0.13</Library_Version>
@@ -172,6 +172,9 @@ See project's README for detailed information.</Description>
       <Exclusions>
         <Path>UsefulLinks.md</Path>
       </Exclusions>
+      <Exclusions>
+        <Path>Taskfile.yml</Path>
+      </Exclusions>
       <Place_Folder_Contents>
         <Path>tools</Path>
       </Place_Folder_Contents>
@@ -267,7 +270,7 @@ See project's README for detailed information.</Description>
         <Synchronyze_with_Directory>false</Synchronyze_with_Directory>
         <Synchronize_Directory_Path>.</Synchronize_Directory_Path>
       </Synchronization_Info>
-      <GUID>3C0616268221D364988DC7B27787A905</GUID>
+      <GUID>7E1D2C2392F237836A277FB1B7D0F805</GUID>
     </Functions_Palette_Data>
   </Library_Palette_Definition>
 </VI_Package_Builder_Settings>
