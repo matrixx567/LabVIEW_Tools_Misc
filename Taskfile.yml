@@ -5,8 +5,19 @@ version: '3'
 vars:
   GREETING: Hello, World!
 
+  LV_VERSION: 2020
+  LV_BITNESS: 32
+
+  VIPB_FILE: Tools_Misc.vipb
+
 tasks:
+
   default:
+    cmds:
+      - task --list-all
+
+  build:
+    # Test if git has changes since last tag
     vars:
       GIT_LATEST_TAG:
         sh: git describe --tags --abbrev=0
@@ -14,11 +25,39 @@ tasks:
         sh: git log -1 --format=%ai {{.GIT_LATEST_TAG}}
       GIT_CHANGES_SINCE_LAST_COMMIT:
         sh: git log {{.GIT_LATEST_TAG}}..HEAD --oneline
+      TEST:
+        sh: cat "DEV ENVIRONMENT LabVIEW 2020"
     preconditions:
       - sh: 'test -n "{{.GIT_CHANGES_SINCE_LAST_COMMIT}}"'
         msg: 'No changes since last commit'
     cmds:
       - cmd: 'echo "Lastet TAG: {{.GIT_LATEST_TAG}} created on {{.GIT_LATEST_TAG_TIME}}"'
       - cmd: 'printf "GIT changes:\n{{.GIT_CHANGES_SINCE_LAST_COMMIT}}\n"'
+      - cmd: git pull
+      # Create changelog
+      # set new TAG version
+      # set description to vipb from README
+      # set changelog to vipb
+      # set version to viib
+      - cmd: 'vipm build {{.VIPB_FILE}}'
+      # - cmd: 'vipm build --labview-version {{.LV_VERSION}} --labview-bitness {{.LV_BITNESS}} {{.VIPB_FILE}}'
+      - cmd: 'git add {{.VIPB_FILE}'
+      - cmd: 'git commit -m "release: {{.NEW_TAG_NAME}}"'
+      - cmd: 'git tag "{{.NEW_TAG_NAME}}"'
+      - cmd: 'git push'
+      - cmd: 'git push --tags'
+      # publish to private repo
+      # install to all LV versions
 
-    silent: true
+      # build application
+      # create zip file with version number
+      # add gitea release
+
+    silent: false
+
+
+  open:vipb:
+    cmds:
+      - cmd: 'explorer {{.VIPB_FILE}}'
+    ignore_error: true
+    
