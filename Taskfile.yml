@@ -1,0 +1,24 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+
+tasks:
+  default:
+    vars:
+      GIT_LATEST_TAG:
+        sh: git describe --tags --abbrev=0
+      GIT_LATEST_TAG_TIME:
+        sh: git log -1 --format=%ai {{.GIT_LATEST_TAG}}
+      GIT_CHANGES_SINCE_LAST_COMMIT:
+        sh: git log {{.GIT_LATEST_TAG}}..HEAD --oneline
+    preconditions:
+      - sh: 'test -n "{{.GIT_CHANGES_SINCE_LAST_COMMIT}}"'
+        msg: 'No changes since last commit'
+    cmds:
+      - cmd: 'echo "Lastet TAG: {{.GIT_LATEST_TAG}} created on {{.GIT_LATEST_TAG_TIME}}"'
+      - cmd: 'echo "Changes: {{.GIT_CHANGES_SINCE_LAST_COMMIT}}"'
+
+    silent: true
