@@ -1,7 +1,7 @@
-<VI_Package_Builder_Settings Version="2020.1" Created_Date="2019-04-18 23:43:15" Modified_Date="2025-11-27 12:50:30" Creator="Martin" Comments="" ID="145d47c560e9d5658f95204d05b9693c">
+<VI_Package_Builder_Settings Version="2020.1" Created_Date="2019-04-18 23:43:15" Modified_Date="2025-11-27 14:55:13" Creator="Martin" Comments="" ID="1d9c730ea30225fed273700aeef983d6">
   <Library_General_Settings>
     <Package_File_Name>MNProjects_Tools_Misc</Package_File_Name>
-    <Library_Version>0.2.0.13</Library_Version>
+    <Library_Version>0.2.0.14</Library_Version>
     <Auto_Increment_Version>false</Auto_Increment_Version>
     <Library_Source_Folder>.</Library_Source_Folder>
     <Library_Output_Folder>build</Library_Output_Folder>
@@ -18,6 +18,7 @@
   <Advanced_Settings>
     <Package_Dependencies>
       <Additional_External_Dependencies>mgi_lib_file &gt;=1.1.0.4</Additional_External_Dependencies>
+      <Additional_External_Dependencies>oglib_file &gt;=6.0.2.28</Additional_External_Dependencies>
     </Package_Dependencies>
     <Custom_Action_VIs>
       <Pre-Build_VI/>
@@ -175,6 +176,9 @@ See project's README for detailed information.</Description>
       <Exclusions>
         <Path>Taskfile.yml</Path>
       </Exclusions>
+      <Exclusions>
+        <Path>cliff.toml</Path>
+      </Exclusions>
       <Place_Folder_Contents>
         <Path>tools</Path>
       </Place_Folder_Contents>
@@ -270,7 +274,7 @@ See project's README for detailed information.</Description>
         <Synchronyze_with_Directory>false</Synchronyze_with_Directory>
         <Synchronize_Directory_Path>.</Synchronize_Directory_Path>
       </Synchronization_Info>
-      <GUID>7E1D2C2392F237836A277FB1B7D0F805</GUID>
+      <GUID>4C02E2FAE592306D4AB886684917806E</GUID>
     </Functions_Palette_Data>
   </Library_Palette_Definition>
 </VI_Package_Builder_Settings>
