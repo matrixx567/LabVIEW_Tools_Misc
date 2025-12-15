@@ -88,6 +88,7 @@
 			<Item Name="utils" Type="Folder">
 				<Item Name="FixMgiMonitoredActor.vi" Type="VI" URL="../tools/Utils/FixMgiMonitoredActor.vi"/>
 				<Item Name="OpenLabViewIniWithCode.vi" Type="VI" URL="../tools/Utils/OpenLabViewIniWithCode.vi"/>
+				<Item Name="OpenProjectTxtWithCode.vi" Type="VI" URL="../tools/Utils/OpenProjectTxtWithCode.vi"/>
 			</Item>
 			<Item Name="DeleteEmptyFolders.vi" Type="VI" URL="../tools/DeleteEmptyFolders.vi"/>
 			<Item Name="Find Non-Project Files.vi" Type="VI" URL="../tools/Find Non-Project Files.vi"/>
