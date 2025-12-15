@@ -1,6 +1,7 @@
 OpenProjectInCmd
 OpenProjectWithCode
 OpenProjectWithSourcetree
+OpenGitRemote
 -
 Find Non-Project Files
 DeleteEmptyFolders

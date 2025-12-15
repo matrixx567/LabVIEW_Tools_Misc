@@ -94,6 +94,7 @@
 			<Item Name="OpenProjectInCmd.vi" Type="VI" URL="../tools/OpenProjectInCmd.vi"/>
 			<Item Name="OpenProjectWithCode.vi" Type="VI" URL="../tools/OpenProjectWithCode.vi"/>
 			<Item Name="OpenProjectWithSourcetree.vi" Type="VI" URL="../tools/OpenProjectWithSourcetree.vi"/>
+			<Item Name="OpenGitRemote.vi" Type="VI" URL="../tools/OpenGitRemote.vi"/>
 			<Item Name="MNProjects.txt" Type="Document" URL="../tools/MNProjects.txt"/>
 		</Item>
 		<Item Name="README.md" Type="Document" URL="../README.md"/>
