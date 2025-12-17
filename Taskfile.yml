@@ -40,12 +40,13 @@ tasks:
       # set changelog to vipb
       # set version to viib
       - cmd: 'vipm build {{.VIPB_FILE}}'
+      # Build number will be incremented during build. Therefore the vipb file must be committed
       # - cmd: 'vipm build --labview-version {{.LV_VERSION}} --labview-bitness {{.LV_BITNESS}} {{.VIPB_FILE}}'
-      - cmd: 'git add {{.VIPB_FILE}'
-      - cmd: 'git commit -m "release: {{.NEW_TAG_NAME}}"'
-      - cmd: 'git tag "{{.NEW_TAG_NAME}}"'
-      - cmd: 'git push'
-      - cmd: 'git push --tags'
+      # - cmd: 'git add {{.VIPB_FILE}}'
+      # - cmd: 'git commit -m "release: {{.NEW_TAG_NAME}}"'
+      # - cmd: 'git tag "{{.NEW_TAG_NAME}}"'
+      # - cmd: 'git push'
+      # - cmd: 'git push --tags'
       # publish to private repo
       # install to all LV versions
 
@@ -61,3 +62,6 @@ tasks:
       - cmd: 'explorer {{.VIPB_FILE}}'
     ignore_error: true
     
+
+# Get latest file of folder on time
+# ls -t | head -n1
