@@ -1,7 +1,7 @@
-<VI_Package_Builder_Settings Version="2020.1" Created_Date="2019-04-18 23:43:15" Modified_Date="2025-12-19 10:05:22" Creator="Martin" Comments="" ID="2b4961c1024da6e6b041db5dcc3d980f">
+<VI_Package_Builder_Settings Version="2020.1" Created_Date="2019-04-18 23:43:15" Modified_Date="2025-12-22 10:50:09" Creator="Martin" Comments="" ID="a0cdc9b676bf9b36f62477250790a7d8">
   <Library_General_Settings>
     <Package_File_Name>MNProjects_Tools_Misc</Package_File_Name>
-    <Library_Version>0.3.0.15</Library_Version>
+    <Library_Version>3.1.0.21</Library_Version>
     <Auto_Increment_Version>false</Auto_Increment_Version>
     <Library_Source_Folder>.</Library_Source_Folder>
     <Library_Output_Folder>build</Library_Output_Folder>
@@ -40,7 +40,7 @@ See project's README for detailed information.</Description>
       <Copyright/>
       <Packager/>
       <URL>https://github.com/matrixx567/LabVIEW_Tools_Misc</URL>
-      <Release_Notes>feat: Reorder tools in menu</Release_Notes>
+      <Release_Notes>## [0.3.0]</Release_Notes>
     </Description>
     <Destinations>
       <Toolkit_VIs>
@@ -177,7 +177,10 @@ See project's README for detailed information.</Description>
         <Path>Taskfile.yml</Path>
       </Exclusions>
       <Exclusions>
-        <Path>cliff.toml</Path>
+        <Path>Changelog.md</Path>
+      </Exclusions>
+      <Exclusions>
+        <Path>cliff_vipb.toml</Path>
       </Exclusions>
       <Place_Folder_Contents>
         <Path>tools</Path>
@@ -274,7 +277,7 @@ See project's README for detailed information.</Description>
         <Synchronyze_with_Directory>false</Synchronyze_with_Directory>
         <Synchronize_Directory_Path>.</Synchronize_Directory_Path>
       </Synchronization_Info>
-      <GUID>4CF9423F692757BE2235064B93BED700</GUID>
+      <GUID>022E9458AEC85F2D2BEBD352DC9F3BAD</GUID>
     </Functions_Palette_Data>
   </Library_Palette_Definition>
 </VI_Package_Builder_Settings>
