@@ -2,21 +2,71 @@
 
 version: '3'
 
+
+
 vars:
-  GREETING: Hello, World!
-
-  LV_VERSION: 2020
-  LV_BITNESS: 32
-
   VIPB_FILE: Tools_Misc.vipb
+
+
+env:
+  LV_VERSION: "2020"
+  LV_BITNESS: "32"
+
+includes:
+  labview:
+    taskfile: C:/DATA/LabVIEW/Taskfile_LabView_Common.yml
+    optional: false
 
 tasks:
 
   default:
     cmds:
       - task --list-all
+    silent: true
+
+
+  find_last_vip:
+    desc: 'Find last VIP file based on modified timestamp'
+    vars:
+      BUILD_FOLDER: 'build'
+      PACKAGE_NAME: 'mnprojects_tools_misc'
+      LAST_VIP:
+        # Sort by mtime
+        sh: '"{{.GIT_INSTALL_ROOT}}\usr\bin\ls" -t "{{.BUILD_FOLDER}}/{{.PACKAGE_NAME}}-*.vip" | head -n1'
+        # Sort by version number
+        # sh: '"{{.GIT_INSTALL_ROOT}}\usr\bin\find" {{.BUILD_FOLDER}} -type f -regex ".*{{.PACKAGE_NAME}}-.*\.vip$" | "{{.GIT_INSTALL_ROOT}}\usr\bin\sort" -n | "{{.GIT_INSTALL_ROOT}}\usr\bin\tail" -n1'
+    cmds:
+      - cmd: 'echo "Working dir: {{.TASK_DIR}}"'
+      - cmd: 'echo "Last VIP: {{.LAST_VIP}}"'
+      - cmd: 'echo "{{.LAST_VIP}}"'
+
+
+# publish package
+# g-cli -v --lv-ver 2020 --arch 32 "C:\DATA\LabView\LabVIEW_Tools_GCLI\G-CLI\vipm_publish.vi" -- publish build/mnprojects_tools_misc-3.1.0.20.vip --repo VAT -v
+
+# release to github
+# gh release create v3.1.0 build\mnprojects_tools_misc-3.1.0.20.vip
+
+  install_vip:
+    desc: 'Install VIP test'
+    vars:
+      VIP_FILE:
+        sh: 'task find_last_vip | tail -n 1'
+    cmds:
+      - cmd: 'echo "VIP: {{.VIP_FILE}}"'
+  
 
   build:
+    desc: 'Build VIP package'
+    cmds:
+      # - cmd: git pull # must be called before build and test
+
+      - task: build_vip
+
+      - cmd: 'git push'
+      - cmd: 'git push --tags'
+
+  build_vip:
     # Test if git has changes since last tag
     vars:
       GIT_LATEST_TAG:
@@ -27,26 +77,57 @@ tasks:
         sh: git log {{.GIT_LATEST_TAG}}..HEAD --oneline
       TEST:
         sh: cat "DEV ENVIRONMENT LabVIEW 2020"
+      NEXT_VERSION:
+        sh: git-cliff --config cliff_vipb.toml --bumped-version
+
     preconditions:
+      # Check if GIT changes are made to 
       - sh: 'test -n "{{.GIT_CHANGES_SINCE_LAST_COMMIT}}"'
         msg: 'No changes since last commit'
+      
+      # Check if git cliff can bump version
+      - sh: 'git-cliff  --config cliff_vipb.toml --bumped-version | grep warn'
+        msg: "There is nothing to bump."
+
     cmds:
       - cmd: 'echo "Lastet TAG: {{.GIT_LATEST_TAG}} created on {{.GIT_LATEST_TAG_TIME}}"'
-      - cmd: 'printf "GIT changes:\n{{.GIT_CHANGES_SINCE_LAST_COMMIT}}\n"'
-      - cmd: git pull
-      # Create changelog
-      # set new TAG version
-      # set description to vipb from README
-      # set changelog to vipb
-      # set version to viib
-      - cmd: 'vipm build {{.VIPB_FILE}}'
+      - cmd: 'echo "GIT changes: {{.GIT_CHANGES_SINCE_LAST_COMMIT}}"'
+      - cmd: 'echo "Next build version: {{.NEXT_VERSION}}"'
+      
+      # Start LabView
+      - task: labview:open
+      - task: labview:open:vipm
+      
+      
+      # Create changelog and set to vipb: Write changelog to file -> set to vipb -> delete file
+      - cmd: 'git-cliff  --config cliff_vipb.toml --bump --unreleased -o CHANGELOG_VIPB.md'
+      - cmd: 'g-cli --lv-ver {{.LV_VERSION}} --arch {{.LV_BITNESS}} "C:\DATA\LabView\LabVIEW_Tools_GCLI\G-CLI\vipm_build.vi" -- changelog:set CHANGELOG_VIPB.md -v --vipb {{.VIPB_FILE}}'
+      - cmd: 'rm CHANGELOG_VIPB.md'
+        ignore_error: true
+      
+      # TODO set description to vipb from README
+      
+      
+      # set version
+      # The version will be set explicitly to the VIPB file. You can call vipm build CLI with a specific --version-number
+      # and --build-number. The vipm build CLI command will not alter the vipb file.
+      # The set version and increment build number is explicitly set to match behavior like in GUI
+      - cmd: 'g-cli --lv-ver {{.LV_VERSION}} --arch {{.LV_BITNESS}} "C:\DATA\LabView\LabVIEW_Tools_GCLI\G-CLI\vipm_build.vi" -- version:set {{.NEXT_VERSION}} -v --vipb {{.VIPB_FILE}}'
+      
       # Build number will be incremented during build. Therefore the vipb file must be committed
-      # - cmd: 'vipm build --labview-version {{.LV_VERSION}} --labview-bitness {{.LV_BITNESS}} {{.VIPB_FILE}}'
-      # - cmd: 'git add {{.VIPB_FILE}}'
-      # - cmd: 'git commit -m "release: {{.NEW_TAG_NAME}}"'
-      # - cmd: 'git tag "{{.NEW_TAG_NAME}}"'
-      # - cmd: 'git push'
-      # - cmd: 'git push --tags'
+      # Build number: In VIPM GUI the build number is incremented after the build and stored in the build file
+      # The vipm build CLI only takes the version within the VIPM file and it doesn't change it
+      - cmd: 'vipm build --labview-version {{.LV_VERSION}} --labview-bitness {{.LV_BITNESS}} {{.VIPB_FILE}}'
+
+      # increment build number and save to file
+      - cmd: 'g-cli --lv-ver {{.LV_VERSION}} --arch {{.LV_BITNESS}} "C:\DATA\LabView\LabVIEW_Tools_GCLI\G-CLI\vipm_build.vi" -- version:inc --vipb {{.VIPB_FILE}}'
+
+      # # Commit changed VIPB file after release
+      - cmd: 'git add {{.VIPB_FILE}}'
+      - cmd: 'git commit -m "release: {{.NEXT_VERSION}}"'
+      - cmd: 'git tag "{{.NEXT_VERSION}}"'
+
+
       # publish to private repo
       # install to all LV versions
 
