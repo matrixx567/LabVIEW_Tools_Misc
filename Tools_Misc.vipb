@@ -1,4 +1,4 @@
-<VI_Package_Builder_Settings Version="2020.1" Created_Date="2019-04-18 23:43:15" Modified_Date="2025-12-22 11:47:49" Creator="Martin" Comments="" ID="1ee81525555bd52faa0bfc37c2e2ae61">
+<VI_Package_Builder_Settings Version="2020.1" Created_Date="2019-04-18 23:43:15" Modified_Date="2026-01-08 14:41:00" Creator="Martin" Comments="" ID="2cc7a72f988fe1cf8123bdd4cea72078">
   <Library_General_Settings>
     <Package_File_Name>MNProjects_Tools_Misc</Package_File_Name>
     <Library_Version>0.3.0.15</Library_Version>
@@ -278,7 +278,21 @@ See project's README for detailed information.</Description>
         <Synchronyze_with_Directory>false</Synchronyze_with_Directory>
         <Synchronize_Directory_Path>.</Synchronize_Directory_Path>
       </Synchronization_Info>
-      <GUID>2F1D7557C295863B5D5AE23BDBA90DE0</GUID>
+      <Items_Data>
+        <Type>Item</Type>
+        <Sub_Palette_Index>-1</Sub_Palette_Index>
+        <NameSub_Menu_Name>JKI StateMachine 2024 ParseStatesAndLog.vi</NameSub_Menu_Name>
+        <Short_Name/>
+        <is_Merge_VI>true</is_Merge_VI>
+        <Position>
+          <Row>1</Row>
+          <Column>1</Column>
+        </Position>
+        <Icon>00000000</Icon>
+        <Path>src\snippets\JKI StateMachine 2024 ParseStatesAndLog.vi</Path>
+        <VI_Title/>
+      </Items_Data>
+      <GUID>2DC9D18644C06505D6D144D664AF19D7</GUID>
     </Functions_Palette_Data>
   </Library_Palette_Definition>
 </VI_Package_Builder_Settings>
