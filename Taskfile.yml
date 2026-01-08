@@ -47,6 +47,12 @@ tasks:
 # release to github
 # gh release create v3.1.0 build\mnprojects_tools_misc-3.1.0.20.vip
 
+
+# vipm install --labview-version 2025 --labview-bitness 64 build\mnprojects_tools_misc-0.3.0.14.vip
+
+
+
+
   install_vip:
     desc: 'Install VIP test'
     vars:
@@ -86,7 +92,7 @@ tasks:
         msg: 'No changes since last commit'
       
       # Check if git cliff can bump version
-      - sh: 'git-cliff  --config cliff_vipb.toml --bumped-version | grep warn'
+      - sh: 'test -z $(git-cliff --config cliff_vipb.toml --bumped-version | grep warn)'
         msg: "There is nothing to bump."
 
     cmds:
@@ -95,8 +101,8 @@ tasks:
       - cmd: 'echo "Next build version: {{.NEXT_VERSION}}"'
       
       # Start LabView
-      - task: labview:open
-      - task: labview:open:vipm
+      # - task: labview:open
+      # - task: labview:open:vipm
       
       
       # Create changelog and set to vipb: Write changelog to file -> set to vipb -> delete file
@@ -146,3 +152,7 @@ tasks:
 
 # Get latest file of folder on time
 # ls -t | head -n1
+
+
+# vipm list --labview-version 2025 --labview-bitness 64 --installed 
+# .*\((.*) v.*\)$
